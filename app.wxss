@@ -1,0 +1,4 @@
+/**app.wxss**/
+.container{
+  font-family: sans-serif; /* 设置全局字体 */
+}

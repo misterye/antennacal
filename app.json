@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#007bff",
+    "navigationBarTitleText": "寻星伴侣",
+    "navigationBarTextStyle": "white"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "使用您的位置信息"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

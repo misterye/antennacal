@@ -1,0 +1,86 @@
+<view class="container">
+    <view class="header">
+        <text class="title">卫星天线参数计算器</text>
+    </view>
+
+    <view class="input-section" style="width: 650rpx; display: block; box-sizing: border-box; position: relative; left: 32rpx; top: -14rpx; height: 89rpx">
+        <view class="location-row">  <label class="label short-label" style="width: 120rpx; display: block; box-sizing: border-box">卫星选择</label>
+            <picker id="satellite-select" range="{{satelliteNames}}" value="{{satelliteIndex}}" bindchange="bindSatelliteChange">
+                <view class="picker-view short-picker-view" style="width: 480rpx; display: block; box-sizing: border-box; height: 55rpx">
+                    {{selectedSatelliteName || '请选择卫星'}}
+                </view>
+            </picker>
+        </view>
+    </view>
+
+    <view class="input-section location-input" style="width: 650rpx; display: block; box-sizing: border-box; position: relative; left: 30rpx; top: -21rpx; height: 309rpx">
+        <view class="location-row">
+            <label class="label short-label" style="height: 41rpx; display: block; box-sizing: border-box; width: 120rpx">小站纬度</label>
+            <input style="width: 480rpx; display: block; box-sizing: border-box; height: 65rpx; position: relative; left: -2rpx; top: 0rpx" type="number" id="latitude" placeholder="例如: 30.00" value="{{latitude}}" bindinput="bindLatitudeInput" class="input short-input"/>
+        </view>
+        <view class="location-row">
+            <label class="label short-label" style="height: 28rpx; display: block; box-sizing: border-box; width: 120rpx">小站经度</label>
+            <input style="width: 480rpx; display: block; box-sizing: border-box; height: 65rpx" type="number" id="longitude" placeholder="例如: 120.00" value="{{longitude}}" bindinput="bindLongitudeInput" class="input short-input"/>
+        </view>
+        <button bindtap="getLocation" class="location-button enhanced-button" style="position: relative; left: 0rpx; top: 20rpx">获取位置</button>
+        <view class="location-row">
+        </view>
+    </view>
+
+    <button bindtap="calculate" class="calculate-button enhanced-button" style="position: relative; left: -3rpx; top: -28rpx">计算参数</button>
+
+    <view class="output-section" style="position: relative; left: 30rpx; top: -27rpx; width: 650rpx; display: block; box-sizing: border-box">
+        <view class="output-header">
+            <text class="output-title">计算结果</text>
+        </view>
+        <view class="output-item">
+            <view class="output-label-container">
+                <text class="output-label">轨道经度：</text>
+            </view>
+            <view class="output-text-container">
+                <text class="output-text short-output-text">{{orbitalLongitude}}</text>
+            </view>
+        </view>
+        <view class="output-item">
+            <view class="output-label-container">
+                <text class="output-label">俯仰角：</text>
+            </view>
+            <view class="output-text-container">
+                <text class="output-text short-output-text">{{elevation}}</text>
+            </view>
+        </view>
+        <view class="output-item">
+            <view class="output-label-container">
+                <text class="output-label">方位角：</text>
+            </view>
+            <view class="output-text-container">
+                <text class="output-text short-output-text">{{azimuth}}</text>
+            </view>
+        </view>
+        <view class="output-item">
+            <view class="output-label-container">
+                <text class="output-label">极化角：</text>
+            </view>
+            <view class="output-text-container">
+                <text class="output-text short-output-text">{{polarization}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="map-section" style="position: relative; left: 30rpx; top: -34rpx; width: 650rpx; height: 562rpx; display: block; box-sizing: border-box; margin-bottom: 20rpx">
+      <view class="map-header">
+          <text class="map-title">位置及天线方位</text>
+      </view>
+      <view class="south-indicator" style="position: absolute; top: 20rpx; right: 20rpx; background-color: rgba(255, 255, 255, 0.8); padding: 5rpx 10rpx; border-radius: 5rpx; font-size: 24rpx; color: #555; box-shadow: 2rpx 2rpx 3rpx rgba(0, 0, 0, 0.1);">
+        向下为正南
+      </view>
+      <map
+          id="tencentMap"
+          style="width: 100%; height: 461rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx"
+          latitude="{{latitude}}"
+          longitude="{{longitude}}"
+          markers="{{markers}}"
+      ></map>
+
+    </view>
+
+</view>
